@@ -24,7 +24,8 @@
 
 2. 初始化集群
     1.命令
-        kubeadm init --kubernetes-version=v1.10.0 --pod-network-cidr=10.244.0.0/16
+        kubeadm init --kubernetes-version=v1.10.0 --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=172.31.237.192
+
     2.初始化按显示的内容敲
         mkdir -p $HOME/.kube
         sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -38,12 +39,13 @@
         etcd-0               Healthy   {"health": "true"}   
 
 3. 启用基于flannel的Pod网络
-    1. 使用kube-flannel.yml文件
-        1. 启动flannel：kubectl apply -f  kube-flannel.yml
-        2. kubectl get pods --all-namespaces查看状态：
-
+    1. wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+    2. kubectl apply -f  kube-flannel.yml
+    3. kubectl get pods --all-namespaces
+    
 4. 拷贝这个joinkey到node节点 开始设置node节点
-    kubeadm join 10.96.142.48:6443 --token iqxnlm.3lupxkk8rwn12e5o --discovery-token-ca-cert-hash sha256:c958bc5df52a88f8c1fc9a83ce2e70b45a51bad3fad71b168f4348a82fb406c2
+        kubeadm join 172.31.237.192:6443 --token xkrn2s.vadk9wil4ajrcuho --discovery-token-ca-cert-hash sha256:60e72249f33863e3c4ec855547468507d3dea6bf6dfca2016a963ac249bc0dbc
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 5. 设置完node节点后 可以加入dashboard
@@ -52,50 +54,10 @@
     3. 查看kubernete-dashboard-admin的token：
         kubectl -n kube-system get secret | grep kubernetes-dashboard-admin
         kubectl describe -n kube-system secret/kubernetes-dashboard-admin-token-5xgk2
-            Name:         kubernetes-dashboard-admin-token-5xgk2
-            Namespace:    kube-system
-            Labels:       <none>
-            Annotations:  kubernetes.io/service-account.name=kubernetes-dashboard-admin
-                        kubernetes.io/service-account.uid=b4b193f1-6628-11e8-8828-00505690349c
-
-            Type:  kubernetes.io/service-account-token
-
-            Data
-            ====
-            ca.crt:     1025 bytes
-            namespace:  11 bytes
-            token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC1hZG1pbi10b2tlbi01eGdrMiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC1hZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImI0YjE5M2YxLTY2MjgtMTFlOC04ODI4LTAwNTA1NjkwMzQ5YyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTprdWJlcm5ldGVzLWRhc2hib2FyZC1hZG1pbiJ9.OK96ezrd2DWw1CSDxO4YISzfs5fmtJ6R9AcfQmKplL7q2xR8lFnDoBf5MLt1c5iTG5zGdy8o-7EwO4h0WvM3Vv3ve5QcE2-Tlke2SfEKOYJFvHLZJeohyVts_0OF1agdBvDjR0LGNazvXFF9y6gryK_TaiEJYnTJEJtFFcj0VoQI2xeUc2GwJdu7sCgfOSvASOQGQxaMs-2_7zMtUh4MgjLGR7j4r5CexIFRLodFrboMo0kXo63mDhaJxZ7Y2F8U7LgteuwZRtji4-pmU3niGHMPyc61VHwT8eTHkCoeG4evnvmxj_tj7yZXM_rRcE-7yqmGVj33Ten1MgZgVgn8Og
-            root@vmlin0545:~# 
+          
     4. 修改dashboard访问方式为NodePort:修改type类型为NodePort
         kubectl -n kube-system edit service kubernetes-dashboard 
-            apiVersion: v1
-            kind: Service
-            metadata:
-            annotations:
-                kubectl.kubernetes.io/last-applied-configuration: |
-                {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"k8s-app":"kubernetes-dashboard"},"name":"kubernetes-dashboard","namespace":"kube-system"},"spec":{"ports":[{"port":443,"targetPort":8443}],"selector":{"k8s-app":"kubernetes-dashboard"}}}
-            creationTimestamp: 2018-06-02T05:48:41Z
-            labels:
-                k8s-app: kubernetes-dashboard
-            name: kubernetes-dashboard
-            namespace: kube-system
-            resourceVersion: "4395"
-            selfLink: /api/v1/namespaces/kube-system/services/kubernetes-dashboard
-            uid: 9a96eec2-6628-11e8-8828-00505690349c
-            spec:
-            clusterIP: 10.98.105.87
-            externalTrafficPolicy: Cluster
-            ports:
-            - nodePort: 30269
-                port: 443
-                protocol: TCP
-                targetPort: 8443
-            selector:
-                k8s-app: kubernetes-dashboard
-            sessionAffinity: None
-            type: NodePort
-            status:
-            loadBalancer: {}
+            
     5. 查看端口
         kubectl get services kubernetes-dashboard -n kube-system
         NAME                   TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)         AGE
