@@ -46,7 +46,6 @@
 4. 拷贝这个joinkey到node节点 开始设置node节点
         kubeadm join 172.31.237.192:6443 --token xkrn2s.vadk9wil4ajrcuho --discovery-token-ca-cert-hash sha256:60e72249f33863e3c4ec855547468507d3dea6bf6dfca2016a963ac249bc0dbc
 
-
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 5. 设置完node节点后 可以加入dashboard
     1. kubectl apply -f kube-dashboard.yaml
