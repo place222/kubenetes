@@ -43,9 +43,6 @@
 Your Kubernetes master has initialized successfully!
 
 
-
-
-
 kubeadm join 172.31.237.194:6443 --token zyugao.454k5h62ra2qprrj --discovery-token-ca-cert-hash sha256:329256505fdeeead9d55ff34c957fd8e7e247952d86adb80c6f1f986fe08affd
 
 
@@ -58,3 +55,9 @@ clusterrolebinding.rbac.authorization.k8s.io "flannel" created
 serviceaccount "flannel" created
 configmap "kube-flannel-cfg" created
 daemonset.extensions "kube-flannel-ds" created
+
+
+
+https://docs.helm.sh/
+https://kubernetes.io/docs/concepts/services-networking/ingress/
+
