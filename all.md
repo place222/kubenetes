@@ -1,37 +1,12 @@
 1.添加镜像 
+    创建/etc/sysctl.d/k8s.conf文件，添加如下内容：
+    net.bridge.bridge-nf-call-ip6tables = 1
+    net.bridge.bridge-nf-call-iptables = 1
+    net.ipv4.ip_forward = 1
+    执行如下命令使修改生效：
 
-cd /etc/apt/sources.list.d/
-vim aliyun.list
-
-deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
-
-禁用防火墙：
-
-$ systemctl stop firewalld
-$ systemctl disable firewalld
-禁用SELINUX：
-
-$ setenforce 0
-$ cat /etc/selinux/config
-SELINUX=disabled
-创建/etc/sysctl.d/k8s.conf文件，添加如下内容：
-
-net.bridge.bridge-nf-call-ip6tables = 1
-net.bridge.bridge-nf-call-iptables = 1
-net.ipv4.ip_forward = 1
-执行如下命令使修改生效：
-
-$ modprobe br_netfilter
-$ sysctl -p /etc/sysctl.d/k8s.conf
+    $ modprobe br_netfilter
+    $ sysctl -p /etc/sysctl.d/k8s.conf
 
 2.安装kubelet kubeadm kubectl
  1.安装必要组件
