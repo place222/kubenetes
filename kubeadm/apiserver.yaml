@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    scheduler.alpha.kubernetes.io/critical-pod: ""
+  creationTimestamp: null
+  labels:
+    component: kube-apiserver
+    tier: control-plane
+  name: kube-apiserver
+  namespace: kube-system
+spec:
+  containers:
+  - command:
+    - kube-apiserver
+    - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+    - --requestheader-group-headers=X-Remote-Group
+    - --requestheader-allowed-names=front-proxy-client
+    - --service-cluster-ip-range=10.96.0.0/12
+    - --service-account-key-file=/etc/kubernetes/pki/sa.pub
+    - --insecure-port=8080
+    - --insecure-bind-address=0.0.0.0
+    - --admission-control=NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,NodeRestriction,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota
+    - --advertise-address=172.31.237.194
+    - --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
+    - --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt
+    - --allow-privileged=true
+    - --requestheader-extra-headers-prefix=X-Remote-Extra-
+    - --client-ca-file=/etc/kubernetes/pki/ca.crt
+    - --tls-cert-file=/etc/kubernetes/pki/apiserver.crt
+    - --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key
+    - --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
+    - --enable-bootstrap-token-auth=true
+    - --requestheader-username-headers=X-Remote-User
+    - --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
+    - --secure-port=6443
+    - --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
+    - --authorization-mode=Node,RBAC
+    - --etcd-servers=https://127.0.0.1:2379
+    - --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt
+    - --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
+    - --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key
+    image: k8s.gcr.io/kube-apiserver-amd64:v1.10.0
+    livenessProbe:
+      failureThreshold: 8
+      httpGet:
+        host: 172.31.237.194
+        path: /healthz
+        port: 6443
+        scheme: HTTPS
+      initialDelaySeconds: 15
+      timeoutSeconds: 15
+    name: kube-apiserver
+    resources:
+      requests:
+        cpu: 250m
+    volumeMounts:
+    - mountPath: /etc/pki
+      name: ca-certs-etc-pki
+      readOnly: true
+    - mountPath: /etc/kubernetes/pki
+      name: k8s-certs
+      readOnly: true
+    - mountPath: /etc/ssl/certs
+      name: ca-certs
+      readOnly: true
+  hostNetwork: true
+  volumes:
+  - hostPath:
+      path: /etc/kubernetes/pki
+      type: DirectoryOrCreate
+    name: k8s-certs
+  - hostPath:
+      path: /etc/ssl/certs
+      type: DirectoryOrCreate
+    name: ca-certs
+  - hostPath:
+      path: /etc/pki
+      type: DirectoryOrCreate
+    name: ca-certs-etc-pki
+status: {}
