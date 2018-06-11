@@ -1,26 +1,38 @@
 1. master节点，执行下面的命令：
 
-    docker pull cnych/kube-apiserver-amd64:v1.10.0  
-    docker pull cnych/kube-scheduler-amd64:v1.10.0  
-    docker pull cnych/kube-controller-manager-amd64:v1.10.0  
-    docker pull cnych/kube-proxy-amd64:v1.10.0  
-    docker pull cnych/k8s-dns-kube-dns-amd64:1.14.8  
-    docker pull cnych/k8s-dns-dnsmasq-nanny-amd64:1.14.8  
-    docker pull cnych/k8s-dns-sidecar-amd64:1.14.8  
-    docker pull cnych/etcd-amd64:3.1.12  
-    docker pull cnych/flannel:v0.10.0-amd64  
-    docker pull cnych/pause-amd64:3.1  
+docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/etcd-amd64:3.1.12
+docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-apiserver-amd64:v1.10.0
+docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-scheduler-amd64:v1.10.0
+docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-controller-manager-amd64:v1.10.0
+docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/flannel:v0.10.0-amd64
+docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-dnsmasq-nanny-amd64:1.14.8
+docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-sidecar-amd64:1.14.8
+docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-kube-dns-amd64:1.14.8
+docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/pause-amd64:3.1
+docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-proxy-amd64:v1.10.0
     
-    docker tag cnych/kube-apiserver-amd64:v1.10.0 k8s.gcr.io/kube-apiserver-amd64:v1.10.0  
-    docker tag cnych/kube-scheduler-amd64:v1.10.0 k8s.gcr.io/kube-scheduler-amd64:v1.10.0  
-    docker tag cnych/kube-controller-manager-amd64:v1.10.0 k8s.gcr.io/kube-controller-manager-amd64:v1.10.0  
-    docker tag cnych/kube-proxy-amd64:v1.10.0 k8s.gcr.io/kube-proxy-amd64:v1.10.0  
-    docker tag cnych/k8s-dns-kube-dns-amd64:1.14.8 k8s.gcr.io/k8s-dns-kube-dns-amd64:1.14.8  
-    docker tag cnych/k8s-dns-dnsmasq-nanny-amd64:1.14.8 k8s.gcr.io/k8s-dns-dnsmasq-nanny-amd64:1.14.8  
-    docker tag cnych/k8s-dns-sidecar-amd64:1.14.8 k8s.gcr.io/k8s-dns-sidecar-amd64:1.14.8  
-    docker tag cnych/etcd-amd64:3.1.12 k8s.gcr.io/etcd-amd64:3.1.12  
-    docker tag cnych/flannel:v0.10.0-amd64 quay.io/coreos/flannel:v0.10.0-amd64  
-    docker tag cnych/pause-amd64:3.1 k8s.gcr.io/pause-amd64:3.1  
+docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/etcd-amd64:3.1.12 k8s.gcr.io/etcd-amd64:3.1.12  
+docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-apiserver-amd64:v1.10.0 k8s.gcr.io/kube-apiserver-amd64:v1.10.0  
+docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-scheduler-amd64:v1.10.0 k8s.gcr.io/kube-scheduler-amd64:v1.10.0  
+docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-controller-manager-amd64:v1.10.0 k8s.gcr.io/kube-controller-manager-amd64:v1.10.0  
+docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/flannel:v0.10.0-amd64 quay.io/coreos/flannel:v0.10.0-amd64  
+docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/pause-amd64:3.1 k8s.gcr.io/pause-amd64:3.1  
+docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-proxy-amd64:v1.10.0 k8s.gcr.io/kube-proxy-amd64:v1.10.0  
+docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-kube-dns-amd64:1.14.8 k8s.gcr.io/k8s-dns-kube-dns-amd64:1.14.8  
+docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-dnsmasq-nanny-amd64:1.14.8 k8s.gcr.io/k8s-dns-dnsmasq-nanny-amd64:1.14.8  
+docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-sidecar-amd64:1.14.8 k8s.gcr.io/k8s-dns-sidecar-amd64:1.14.8 
+
+docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/etcd-amd64:3.1.12
+docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-apiserver-amd64:v1.10.0
+docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-scheduler-amd64:v1.10.0
+docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-controller-manager-amd64:v1.10.0
+docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/flannel:v0.10.0-amd64
+docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-dnsmasq-nanny-amd64:1.14.8
+docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-sidecar-amd64:1.14.8
+docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-kube-dns-amd64:1.14.8
+docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/pause-amd64:3.1
+docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-proxy-amd64:v1.10.0
+
 
 2. 初始化集群
     1.命令
@@ -44,8 +56,7 @@
     3. kubectl get pods --all-namespaces
     
 4. 拷贝这个joinkey到node节点 开始设置node节点
-        kubeadm join 172.31.237.192:6443 --token xkrn2s.vadk9wil4ajrcuho --discovery-token-ca-cert-hash sha256:60e72249f33863e3c4ec855547468507d3dea6bf6dfca2016a963ac249bc0dbc
-
+kubeadm join 172.31.237.194:6443 --token ki2r9n.snx0er1284020xjl --discovery-token-ca-cert-hash sha256:27f53b9715f3f02b5dc2696eff52559c9591a0f49260ea89d83d07718b96480d
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 5. 设置完node节点后 可以加入dashboard
     1. kubectl apply -f kube-dashboard.yaml

@@ -31,16 +31,18 @@ docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/etcd-amd64:3.1.12 k8s.gcr
 docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-apiserver-amd64:v1.10.0 k8s.gcr.io/kube-apiserver-amd64:v1.10.0  
 docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-scheduler-amd64:v1.10.0 k8s.gcr.io/kube-scheduler-amd64:v1.10.0  
 docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-controller-manager-amd64:v1.10.0 k8s.gcr.io/kube-controller-manager-amd64:v1.10.0  
+
 docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/flannel:v0.10.0-amd64 quay.io/coreos/flannel:v0.10.0-amd64  
 docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/pause-amd64:3.1 k8s.gcr.io/pause-amd64:3.1  
 docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-proxy-amd64:v1.10.0 k8s.gcr.io/kube-proxy-amd64:v1.10.0  
+docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-kube-dns-amd64:1.14.8 k8s.gcr.io/k8s-dns-kube-dns-amd64:1.14.8  
+docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-dnsmasq-nanny-amd64:1.14.8 k8s.gcr.io/k8s-dns-dnsmasq-nanny-amd64:1.14.8  
+docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-sidecar-amd64:1.14.8 k8s.gcr.io/k8s-dns-sidecar-amd64:1.14.8 
+
 docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kubernetes-dashboard-amd64:v1.8.3 k8s.gcr.io/kubernetes-dashboard-amd64:v1.8.3  
 docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/heapster-influxdb-amd64:v1.3.3 k8s.gcr.io/heapster-influxdb-amd64:v1.3.3  
 docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/heapster-grafana-amd64:v4.4.3 k8s.gcr.io/heapster-grafana-amd64:v4.4.3  
 docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/heapster-amd64:v1.4.2 k8s.gcr.io/heapster-amd64:v1.4.2  
-docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-sidecar-amd64:1.14.8 k8s.gcr.io/k8s-dns-kube-dns-amd64:1.14.8  
-docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-dnsmasq-nanny-amd64:1.14.8 k8s.gcr.io/k8s-dns-dnsmasq-nanny-amd64:1.14.8  
-docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-sidecar-amd64:1.14.8 k8s.gcr.io/k8s-dns-sidecar-amd64:1.14.8  
 #公网
 
 

@@ -3,10 +3,20 @@
 3. 设置node
 
 
+root@kube:~# kubeadm init --kubernetes-version=v1.10.0 --pod-network-cidr=10.244.0.0/16
+[init] Using Kubernetes version: v1.10.0
+[init] Using Authorization modes: [Node RBAC]
+[preflight] Running pre-flight checks.
+	[WARNING SystemVerification]: docker version is greater than the most recently validated version. Docker version: 18.03.1-ce. Max validated version: 17.03
+	[WARNING FileExisting-crictl]: crictl not found in system path
+Suggestion: go get github.com/kubernetes-incubator/cri-tools/cmd/crictl
 [certificates] Generated ca certificate and key.
 [certificates] Generated apiserver certificate and key.
 [certificates] apiserver serving cert is signed for DNS names [kube kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [10.96.0.1 172.31.237.194]
 [certificates] Generated apiserver-kubelet-client certificate and key.
+[certificates] Generated sa key and public key.
+[certificates] Generated front-proxy-ca certificate and key.
+[certificates] Generated front-proxy-client certificate and key.
 [certificates] Generated etcd/ca certificate and key.
 [certificates] Generated etcd/server certificate and key.
 [certificates] etcd/server serving cert is signed for DNS names [localhost] and IPs [127.0.0.1]
@@ -14,9 +24,6 @@
 [certificates] etcd/peer serving cert is signed for DNS names [kube] and IPs [172.31.237.194]
 [certificates] Generated etcd/healthcheck-client certificate and key.
 [certificates] Generated apiserver-etcd-client certificate and key.
-[certificates] Generated sa key and public key.
-[certificates] Generated front-proxy-ca certificate and key.
-[certificates] Generated front-proxy-client certificate and key.
 [certificates] Valid certificates and keys now exist in "/etc/kubernetes/pki"
 [kubeconfig] Wrote KubeConfig file to disk: "/etc/kubernetes/admin.conf"
 [kubeconfig] Wrote KubeConfig file to disk: "/etc/kubernetes/kubelet.conf"
@@ -28,11 +35,11 @@
 [etcd] Wrote Static Pod manifest for a local etcd instance to "/etc/kubernetes/manifests/etcd.yaml"
 [init] Waiting for the kubelet to boot up the control plane as Static Pods from directory "/etc/kubernetes/manifests".
 [init] This might take a minute or longer if the control plane images have to be pulled.
-[apiclient] All control plane components are healthy after 17.501766 seconds
+[apiclient] All control plane components are healthy after 15.001606 seconds
 [uploadconfig] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
 [markmaster] Will mark node kube as master by adding a label and a taint
 [markmaster] Master kube tainted and labelled with key/value: node-role.kubernetes.io/master=""
-[bootstraptoken] Using token: zshjgq.fgdcq05c2xnf3n9r
+[bootstraptoken] Using token: sem7n8.n7e1z7knz7zp3gbg
 [bootstraptoken] Configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
 [bootstraptoken] Configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
 [bootstraptoken] Configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
@@ -40,7 +47,6 @@
 [addons] Applied essential addon: kube-dns
 [addons] Applied essential addon: kube-proxy
 
-Your Kubernetes master has initialized successfully!
 
 
 kubeadm join 172.31.237.194:6443 --token zyugao.454k5h62ra2qprrj --discovery-token-ca-cert-hash sha256:329256505fdeeead9d55ff34c957fd8e7e247952d86adb80c6f1f986fe08affd
