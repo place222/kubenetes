@@ -56,7 +56,9 @@ docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-proxy-amd64:v1.10.0
     3. kubectl get pods --all-namespaces
     
 4. 拷贝这个joinkey到node节点 开始设置node节点
-kubeadm join 172.31.237.194:6443 --token ki2r9n.snx0er1284020xjl --discovery-token-ca-cert-hash sha256:27f53b9715f3f02b5dc2696eff52559c9591a0f49260ea89d83d07718b96480d
+kubeadm join 172.31.237.193:6443 --token dogex7.rprn72582vodbm7z --discovery-token-ca-cert-hash sha256:3c37f935912f8f82cd406142ca4779f380ff3fe84d8e38108c914110644e32f8
+
+！！！！！ 搞完之后加入--insecure-bind-address=0.0.0.0 开放外部访问
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 5. 设置完node节点后 可以加入dashboard
     1. kubectl apply -f kube-dashboard.yaml

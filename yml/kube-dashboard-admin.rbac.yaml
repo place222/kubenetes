@@ -1,3 +1,4 @@
+#创建一个admin服务号
 ---  
 apiVersion: v1  
 kind: ServiceAccount  
@@ -6,7 +7,7 @@ metadata:
     k8s-app: kubernetes-dashboard  
   name: kubernetes-dashboard-admin  
   namespace: kube-system  
-   
+#绑定集群的管理这角色 可查看所有
 ---  
 apiVersion: rbac.authorization.k8s.io/v1beta1  
 kind: ClusterRoleBinding  

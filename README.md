@@ -49,10 +49,9 @@ Suggestion: go get github.com/kubernetes-incubator/cri-tools/cmd/crictl
 
 
 
-kubeadm join 172.31.237.194:6443 --token zyugao.454k5h62ra2qprrj --discovery-token-ca-cert-hash sha256:329256505fdeeead9d55ff34c957fd8e7e247952d86adb80c6f1f986fe08affd
+  kubeadm join 172.31.237.194:6443 --token bxml1e.pkrs5ty8earl6gwn --discovery-token-ca-cert-hash sha256:6d0154a3d40e1e12f5911b3244929b259a65c4ed2caed8e7e47c298131e23dfc
 
-
-http://47.105.54.159:8080/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login
+http://47.105.101.19:8080/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login
 
 
 
