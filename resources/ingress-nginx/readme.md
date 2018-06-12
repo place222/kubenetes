@@ -17,17 +17,8 @@ wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/rb
 wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/with-rbac.yaml
 
 
-修改镜像地址为国内镜像，国外的需要×××，网速你懂的。
-
-default-backend.yaml：
-
-image: registry.cn-hangzhou.aliyuncs.com/google_containers/defaultbackend:1.4
-
- 
 
 with-rbac.yaml：
-
-image: lizhenliang/nginx-ingress-controller:0.9.0
 
 添加hostNetwork: true在serviceAccountName: nginx-ingress-serviceaccount下边
 

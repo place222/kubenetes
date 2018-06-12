@@ -1,42 +1,7 @@
-1. master节点，执行下面的命令：
-
-docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/etcd-amd64:3.1.12
-docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-apiserver-amd64:v1.10.0
-docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-scheduler-amd64:v1.10.0
-docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-controller-manager-amd64:v1.10.0
-docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/flannel:v0.10.0-amd64
-docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-dnsmasq-nanny-amd64:1.14.8
-docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-sidecar-amd64:1.14.8
-docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-kube-dns-amd64:1.14.8
-docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/pause-amd64:3.1
-docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-proxy-amd64:v1.10.0
-    
-docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/etcd-amd64:3.1.12 k8s.gcr.io/etcd-amd64:3.1.12  
-docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-apiserver-amd64:v1.10.0 k8s.gcr.io/kube-apiserver-amd64:v1.10.0  
-docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-scheduler-amd64:v1.10.0 k8s.gcr.io/kube-scheduler-amd64:v1.10.0  
-docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-controller-manager-amd64:v1.10.0 k8s.gcr.io/kube-controller-manager-amd64:v1.10.0  
-docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/flannel:v0.10.0-amd64 quay.io/coreos/flannel:v0.10.0-amd64  
-docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/pause-amd64:3.1 k8s.gcr.io/pause-amd64:3.1  
-docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-proxy-amd64:v1.10.0 k8s.gcr.io/kube-proxy-amd64:v1.10.0  
-docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-kube-dns-amd64:1.14.8 k8s.gcr.io/k8s-dns-kube-dns-amd64:1.14.8  
-docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-dnsmasq-nanny-amd64:1.14.8 k8s.gcr.io/k8s-dns-dnsmasq-nanny-amd64:1.14.8  
-docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-sidecar-amd64:1.14.8 k8s.gcr.io/k8s-dns-sidecar-amd64:1.14.8 
-
-docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/etcd-amd64:3.1.12
-docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-apiserver-amd64:v1.10.0
-docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-scheduler-amd64:v1.10.0
-docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-controller-manager-amd64:v1.10.0
-docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/flannel:v0.10.0-amd64
-docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-dnsmasq-nanny-amd64:1.14.8
-docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-sidecar-amd64:1.14.8
-docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-kube-dns-amd64:1.14.8
-docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/pause-amd64:3.1
-docker rmi registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-proxy-amd64:v1.10.0
-
-
 2. 初始化集群
     1.命令
-        kubeadm init --kubernetes-version=v1.10.0 --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=172.31.237.192 --apiserver-cert-extra-sans=47.105.54.159
+        ! 切记一定要把master ip 的地址写上apiserver-cert-extra-sans上做ca证书
+        kubeadm init --kubernetes-version=v1.10.0 --pod-network-cidr=10.244.0.0/16  --apiserver-cert-extra-sans=47.105.54.159
 
     2.初始化按显示的内容敲
         mkdir -p $HOME/.kube
@@ -60,18 +25,11 @@ kubeadm join 172.31.237.194:6443 --token 4yjd9k.9vj9czu9scpupfjr --discovery-tok
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 5. 设置完node节点后 可以加入dashboard
-    1. kubectl apply -f kube-dashboard.yaml
-    2. kubectl create -f kube-dashboard-admin.rbac.yaml
-    3. 查看kubernete-dashboard-admin的token：
-        kubectl -n kube-system get secret | grep kubernetes-dashboard-admin
-        kubectl describe -n kube-system secret/kubernetes-dashboard-admin-token-5xgk2
-          
-    4. 修改dashboard访问方式为NodePort:修改type类型为NodePort
-        kubectl -n kube-system edit service kubernetes-dashboard 
-            
-    5. 查看端口
-        kubectl get services kubernetes-dashboard -n kube-system
-        NAME                   TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)         AGE
-        kubernetes-dashboard   NodePort   10.98.105.87   <none>        443:30269/TCP   8m
+    1. 具体查看 resources/dashboard
 6. heapster 监控组建安装与使用
-    
+    1. 具体查看resources/heapster
+7. 安装ingress-nginx
+    1. 具体查看resources/ingress-nginx
+8. 安装helm
+    1. 这个是一个编排包管理的工具
+    2. 具体查看resources/helm
