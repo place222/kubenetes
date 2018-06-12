@@ -11,7 +11,7 @@ docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-scheduler-amd64:v1.
 docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kube-controller-manager-amd64:v1.10.0
 #网络
 docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/flannel:v0.10.0-amd64
-dcoker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-dnsmasq-nanny-amd64:1.14.8
+docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-dnsmasq-nanny-amd64:1.14.8
 docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-sidecar-amd64:1.14.8
 docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/k8s-dns-kube-dns-amd64:1.14.8
 docker pull registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/pause-amd64:3.1
@@ -43,6 +43,9 @@ docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/kubernetes-dashboard-amd6
 docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/heapster-influxdb-amd64:v1.3.3 k8s.gcr.io/heapster-influxdb-amd64:v1.3.3  
 docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/heapster-grafana-amd64:v4.4.3 k8s.gcr.io/heapster-grafana-amd64:v4.4.3  
 docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/heapster-amd64:v1.4.2 k8s.gcr.io/heapster-amd64:v1.4.2  
+
+docker tag registry-vpc.cn-qingdao.aliyuncs.com/ly-k8s/defaultbackend:1.4 gcr.io/google_containers/defaultbackend:1.4
+docker tag quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.15.0
 #公网
 
 
