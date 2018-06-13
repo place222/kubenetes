@@ -12,9 +12,10 @@
 4. 编辑docker-compose.yml 下的ports:端口
     1. 1180:80 1443:443 14443:4443
 5. 编辑 common/templates/registry/config.yml 下加入
-    1. realm:$public-url:1180 补上端口
-6. ./install.sh
-7. 默认管理员用户名/密码为admin / Harbor12345。
+    1. realm:$public-url:1180 补上端口 (如果这个hostname后面有端口号 这个就不用了)
+6. 编辑 harbor.cfg hostname补上端口
+7. ./install.sh
+8. 默认管理员用户名/密码为admin / Harbor12345。
 
 docker login 47.104.236.159:1180
 

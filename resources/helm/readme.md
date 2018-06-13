@@ -14,3 +14,14 @@
         kubectl edit deploy --namespace kube-system tiller-deploy
     1. 插入 serviceAccount:tiller
         serviceAccount: tiller
+
+
+
+
+
+
+
+
+1.使用
+需要下载一个windows的客户端来操作
+
