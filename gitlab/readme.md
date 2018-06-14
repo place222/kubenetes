@@ -24,3 +24,18 @@ docker run -d --name gitlab-runner --restart always \
 
 2. 注册runner
     docker run --rm -t -i -v /srv/gitlab-runner/config:/etc/gitlab-runner --name gitlab-runner gitlab/gitlab-runner register
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------helm 安装方式 -----------------------
+1. 一个kubernetes cluster 群集
+2. helm 安装
+3. helm repo add gitlab https://charts.gitlab.io 加载这个charts
+4. helm 
