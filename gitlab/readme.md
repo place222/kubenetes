@@ -29,11 +29,6 @@ docker run -d --name gitlab-runner --restart always \
 
 
 
-
-
-
-
-
 ------------------------------------------------------helm 安装方式 -----------------------
 1. 一个kubernetes cluster 群集
 2. helm 安装

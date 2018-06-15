@@ -6,3 +6,12 @@ kubernetes dashboard 的安装
 4. kubectl proxy 开启代理
 5. http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
 6. 查找kubernetes-dashboard-admin secret 下的token登陆即可
+
+
+
+
+
+
+
+一旦dashboard 健康检查不良好 可尝试
+systemctl restart kubelet

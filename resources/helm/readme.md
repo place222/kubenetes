@@ -16,12 +16,6 @@
         serviceAccount: tiller
 
 
-
-
-
-
-
-
 1.使用
 需要下载一个windows的客户端来操作
 

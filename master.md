@@ -21,8 +21,13 @@
     3. kubectl get pods --all-namespaces
     
 4. 拷贝这个joinkey到node节点 开始设置node节点
+
 kubeadm join 172.31.237.194:6443 --token 4yjd9k.9vj9czu9scpupfjr --discovery-token-ca-cert-hash sha256:a4773305a698a4e9737e63991c514fc38cb90d05b8abf20a55c93835ada9b18b
 
+#公司48master
+kubeadm join 10.96.142.48:6443 --token 6up4cu.wvutd4tm5xuh4y19 --discovery-token-ca-cert-hash sha256:fc39135909193a1e8131e3f082d3d5b3f85b5483b1ee330732523d5db6912caa
+token:
+eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC1hZG1pbi10b2tlbi1mc3pzYiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC1hZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjRjYWE4Y2VmLTcwNmUtMTFlOC1hMGY4LTAwNTA1NjkwMzQ5YyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTprdWJlcm5ldGVzLWRhc2hib2FyZC1hZG1pbiJ9.QzgtX9w01UprPUN0BV1h9uPzK7qk2soBKUMg1d-C2rxI8MtZIeJife6ILG_G4PAACwUtlYhaUmWrUfG45VQVAdKE96nNL1Sqz9ShxEKy4kaP-z9ivXNgWwzlklBeYpoSdzQXZ1qEHnnY8609RGZoDevXk132ioC543outI1MypGQXcECvH0jesdF6XcpVUmvWvr0Z7LqpAy0Iadbqe1kXTNUsF8z1IjdUa-QBRigH9X_L9vnWwiGEQ0uF6XzC3w4KyIISPPiHer51JRNJKhgJuU_eR2c7YfnuHuUjgc9RVY0J8zm4Mo2NxW2EtbwmvdD_O2VV_SLmFkCTuqNXyKctg
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 5. 设置完node节点后 可以加入dashboard
     1. 具体查看 resources/dashboard
