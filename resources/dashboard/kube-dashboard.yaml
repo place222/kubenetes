@@ -123,7 +123,7 @@ spec:
           # Uncomment the following line to manually specify Kubernetes API server Host
           # If not specified, Dashboard will attempt to auto discover the API server and connect
           # to it. Uncomment only if the default does not work.
-          #- --apiserver-host=http://172.31.237.194:8080
+          # - --apiserver-host=http://my-address:port
         volumeMounts:
         - name: kubernetes-dashboard-certs
           mountPath: /certs
@@ -132,7 +132,7 @@ spec:
           name: tmp-volume
         livenessProbe:
           httpGet:
-            scheme: HTTP
+            scheme: HTTPS
             path: /
             port: 8443
           initialDelaySeconds: 30
@@ -161,7 +161,7 @@ metadata:
   namespace: kube-system
 spec:
   ports:
-    - port: 80
+    - port: 443
       targetPort: 8443
   selector:
     k8s-app: kubernetes-dashboard
