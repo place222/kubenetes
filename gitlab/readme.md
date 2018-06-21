@@ -18,8 +18,9 @@ sudo docker run --detach \
 gitlab-runner docker
 1. 启用守护进程 
 docker run -d --name gitlab-runner --restart always \
-  -v /srv/gitlab-runner/config:/etc/gitlab-runner \
+  -v /etc/gitlab-runner/config:/etc/gitlab-runner \
   -v /var/run/docker.sock:/var/run/docker.sock \
+  --add-host ly.gitlab.com:10.100.17.78 \
   gitlab/gitlab-runner:latest
 
 2. 注册runner

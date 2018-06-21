@@ -17,7 +17,7 @@
 7. ./install.sh
 8. 默认管理员用户名/密码为admin / Harbor12345。
 
-docker login 47.104.236.159:1180
+docker login 10.100.17.78:1180
 
 docker tag node:9-slim 47.104.236.159/hello-word/node:9-slim
 
